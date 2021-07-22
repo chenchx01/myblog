@@ -32,7 +32,8 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Chenchx" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -328,9 +329,7 @@
                     var typed = new Typed("#subtitle", {
                         strings: [ 
                             
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
+                                "当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；",
                             
                         ],
                         startDelay: 300,
@@ -346,14 +345,10 @@
     </div>
 </div>
 
-
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
-
-
     </div>
 </div>
 <style>
@@ -709,6 +704,15 @@
 </footer>
 
 <div class="progress-bar"></div>
+# 若是after-footer.ejs，在最后添加
+
+    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+    <script>
+        if (window.mermaid) {
+            console.log(11111111111111)
+            mermaid.initialize({theme: 'forest'});
+        }
+    </script>
 
 
     <!-- 搜索遮罩框 -->
@@ -882,6 +886,24 @@ $(function () {
             }, 3e3))
         })
     </script>
+    <!-- 鼠标点击烟花爆炸效果  -->
+    
+
+    <!-- 背景雪花飘落特效洪卫  -->
+    
+
+    <!-- 鼠标点击文字特效 -->
+    
+
+    <!-- 背景雪花飘落特效 -->
+    
+        <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/xuehuapiaoluo.js"><\/script>');
+            }
+        </script>
+    
 
 </body>
 

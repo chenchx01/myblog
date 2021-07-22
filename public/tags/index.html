@@ -32,7 +32,8 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Chenchx" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -328,9 +329,7 @@
                     var typed = new Typed("#subtitle", {
                         strings: [ 
                             
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
+                                "当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；",
                             
                         ],
                         startDelay: 300,
@@ -346,14 +345,10 @@
     </div>
 </div>
 
-
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
-
-
     </div>
 </div>
 
@@ -370,19 +365,46 @@
             <div class="tag-chips">
                 
                 
-                <a href="/tags/hexo/" title="hexo: 1">
+                <a href="/tags/Hexo/" title="Hexo: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="hexo" style="background-color: #F9EBEA;">hexo
+                            data-tagname="Hexo" style="background-color: #F9EBEA;">Hexo
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/github/" title="github: 1">
+                <a href="/tags/hexo-theme-matery/" title="hexo-theme-matery: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="github" style="background-color: #F5EEF8;">github
+                            data-tagname="hexo-theme-matery" style="background-color: #F5EEF8;">hexo-theme-matery
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/blinkfox/" title="blinkfox: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="blinkfox" style="background-color: #D5F5E3;">blinkfox
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/netty/" title="netty: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="netty" style="background-color: #E8F8F5;">netty
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/nio/" title="nio: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="nio" style="background-color: #FEF9E7;">nio
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -411,7 +433,7 @@
 <script type="text/javascript">
     
 
-    $('#tag-wordcloud').jQCloud([{"text":"hexo","weight":1,"link":"/tags/hexo/"},{"text":"github","weight":1,"link":"/tags/github/"}], {
+    $('#tag-wordcloud').jQCloud([{"text":"Hexo","weight":1,"link":"/tags/Hexo/"},{"text":"hexo-theme-matery","weight":1,"link":"/tags/hexo-theme-matery/"},{"text":"blinkfox","weight":1,"link":"/tags/blinkfox/"},{"text":"netty","weight":2,"link":"/tags/netty/"},{"text":"nio","weight":1,"link":"/tags/nio/"}], {
         autoResize: true
     });
 </script>
@@ -496,6 +518,15 @@
 </footer>
 
 <div class="progress-bar"></div>
+# 若是after-footer.ejs，在最后添加
+
+    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+    <script>
+        if (window.mermaid) {
+            console.log(11111111111111)
+            mermaid.initialize({theme: 'forest'});
+        }
+    </script>
 
 
     <!-- 搜索遮罩框 -->
@@ -669,6 +700,24 @@ $(function () {
             }, 3e3))
         })
     </script>
+    <!-- 鼠标点击烟花爆炸效果  -->
+    
+
+    <!-- 背景雪花飘落特效洪卫  -->
+    
+
+    <!-- 鼠标点击文字特效 -->
+    
+
+    <!-- 背景雪花飘落特效 -->
+    
+        <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/xuehuapiaoluo.js"><\/script>');
+            }
+        </script>
+    
 
 </body>
 

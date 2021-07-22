@@ -2,13 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c900df75-e563-4c49-bb75-ceaada9db6cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-matery/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-matery/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-matery/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-matery/layout/_partial/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-matery/layout/_partial/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-matery/layout/_widget/music.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-matery/layout/_widget/music.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-matery/layout/layout.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-matery/layout/layout.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-matery/source/css/matery.css" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-matery/source/css/matery.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/2021/07/19/hello-world/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/2021/07/20/test/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/404/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/404/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/about/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/about/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/2021/07/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2021/07/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/2021/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2021/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/atom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/atom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/contact/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/contact/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/friends/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/friends/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/medias/reward/alipay.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tags/github/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tags/hexo/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/tags/hexo/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tags/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/tags/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/hello-world.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/test.md" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,21 +33,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/hexo-theme-matery" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1vZN6HVkpBnWeTGmrfFtPHwF1JL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/hexo-theme-matery/source/medias/reward" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\myblog\themes\hexo-theme-matery\source\medias\netty" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\hexo\source\_data" />
-      <recent name="F:\hexo\source\404" />
-      <recent name="F:\hexo\scaffolds" />
+      <recent name="F:\myblog\themes\hexo-theme-matery\source\medias\netty\img" />
+      <recent name="F:\myblog\themes\hexo-theme-matery\source" />
+      <recent name="F:\myblog\themes\hexo-theme-matery\source\medias" />
+      <recent name="F:\myblog\themes\hexo-theme-matery\source\js" />
+      <recent name="F:\myblog\themes\hexo-theme-matery\source\medias\reward" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -58,7 +79,8 @@
       <updated>1626765473266</updated>
       <workItem from="1626765474587" duration="8521000" />
       <workItem from="1626832135641" duration="4572000" />
-      <workItem from="1626837358692" duration="554000" />
+      <workItem from="1626837358692" duration="19812000" />
+      <workItem from="1626939639446" duration="6477000" />
     </task>
     <servers />
   </component>

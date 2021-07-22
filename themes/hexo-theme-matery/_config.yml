@@ -148,6 +148,12 @@ toc:
   collapseDepth: 0 # 目录默认展开层级
   showToggleBtn: true # 是否显示切换TOC目录展开收缩的按钮
 
+
+# Whether the code is broken.
+# 代码是否换行
+#code:
+#  break: false
+
 # 代码块相关
 code:
   lang: true # 代码块是否显示名称
@@ -533,8 +539,7 @@ subtitle:
   typeSpeed: 100 # 打字速度
   backSpeed: 50 # 删除速度
   sub:
-    - 从来没有真正的绝境, 只有心灵的迷途
-    - Never really desperate, only the lost of the soul
+    - 当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；
 
 # 手机二级菜单.
 navMenu:
@@ -598,3 +603,32 @@ bbtime:
  appId: # 你的appId
  appKey: # 你的appKey
  serverURLs: # https://你的api
+
+
+
+# 页面樱花飘落动效
+sakura:
+  enable: false
+
+# 鼠标点击烟花爆炸动效
+fireworks:
+  enable: false
+
+
+# 天气控件 Weather Widget
+weather:
+  enable: true
+
+# 鼠标点击文字特效
+wenzi:
+  enable: false
+
+# 背景雪花飘落特效
+xuehuapiaoluo:
+  enable: true
+# Mermaid tag
+mermaid: ## mermaid url https://github.com/knsv/mermaid
+  enable: true  # default true
+  version: "7.1.2" # default v7.1.2
+  options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
+  #startOnload: true  // default true
