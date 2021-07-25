@@ -12,7 +12,7 @@ password:
 summary: Netty 是一个异步的、基于事件驱动的网络应用框架，用于快速开发可维护、高性能的网络服务器和客户端
 tags:
  - netty
-categories:
+categories: netty
 ---
 
 
@@ -223,11 +223,19 @@ EventLoopGroup 是一组 EventLoop，Channel 一般会调用 EventLoopGroup 的 
 
 ```java
 // 内部创建了两个 EventLoop, 每个 EventLoop 维护一个线程
-DefaultEventLoopGroup group = new DefaultEventLoopGroup(2);
+EventLoopGroup group = new NioEventLoopGroup();//io,普通任务,定时任务
+EventLoopGroup group = new DefaultEventLoopGroup();//普通任务,定时任务
+
+默认线程数 = 系统核数 * 2 
+DEFAULT_EVENT_LOOP_THREADS = Math.max(1, SystemPropertyUtil.getInt(
+                "io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
+
+获取下一个循环对象
 System.out.println(group.next());
 System.out.println(group.next());
 System.out.println(group.next());
 ```
+
 
 输出
 
@@ -240,7 +248,7 @@ io.netty.channel.DefaultEventLoop@60f82f98
 也可以使用 for 循环
 
 ```java
-DefaultEventLoopGroup group = new DefaultEventLoopGroup(2);
+EventLoopGroup group = new NioEventLoopGroup(2);
 for (EventExecutor eventLoop : group) {
     System.out.println(eventLoop);
 }
@@ -253,15 +261,35 @@ io.netty.channel.DefaultEventLoop@60f82f98
 io.netty.channel.DefaultEventLoop@35f983a6
 ```
 
+执行普通任务
+```java 
+    public static void main(String[] args) { 
+        EventLoopGroup group = new NioEventLoopGroup();
+        group.next().submit(()->{
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            log.debug("OK");
+        });
+            log.debug("main");
+    }
+```
+执行定时任务
+```java 
+   group.next().scheduleAtFixedRate(()->{
+             log.debug("OK");
+         },0,1, TimeUnit.SECONDS);// initialDelay 初始延迟时间，period 时间间隔,TimeUnit 时间单位
+```
 
-
-#### ? 优雅关闭
+####  3.1.1优雅关闭
 
 优雅关闭 `shutdownGracefully` 方法。该方法会首先切换 `EventLoopGroup` 到关闭状态从而拒绝新的任务的加入，然后在任务队列的任务都处理完成后，停止线程的运行。从而确保整体应用是在正常有序的状态下退出的
 
 
 
-#### 演示 NioEventLoop 处理 io 事件
+#### 3.1.2 演示 NioEventLoop 处理 io 事件
 
 服务器端两个 nio worker 工人
 
@@ -321,16 +349,36 @@ public static void main(String[] args) throws InterruptedException {
 ```
 
 可以看到两个工人轮流处理 channel，但工人与 channel 之间进行了绑定
-
+Bootstrap的group()方法可以传入两个EventLoopGroup参数，分别负责处理不同的事件
+```java
+public class MyServer {
+    public static void main(String[] args) {
+        new ServerBootstrap()
+            	// 两个Group，分别为Boss 负责Accept事件，Worker 负责读写事件
+                .group(new NioEventLoopGroup(1), new NioEventLoopGroup(2))
+            
+				...
+    }
+}
+```
+多个客户端分别发送 hello 结果
+```java
+nioEventLoopGroup-3-1 hello1
+nioEventLoopGroup-3-2 hello2
+nioEventLoopGroup-3-1 hello3
+nioEventLoopGroup-3-2 hello4
+nioEventLoopGroup-3-2 hello4
+```
+可以看出，一个EventLoop可以负责多个Channel，且EventLoop一旦与Channel绑定，则一直负责处理该Channel中的事件
 ![](/medias/netty/img/0042.png)
 
-
-
-再增加两个非 nio 工人
-
+ 
+增加自定义EventLoopGroup
+当有的任务需要较长的时间处理时，可以使用非NioEventLoopGroup，避免同一个NioEventLoop中的其他Channel在较长的时间内都无法得到处理
 ```java
 DefaultEventLoopGroup normalWorkers = new DefaultEventLoopGroup(2);
 new ServerBootstrap()
+// 两个Group，分别为Boss 负责Accept事件，Worker 负责读写事件
     .group(new NioEventLoopGroup(1), new NioEventLoopGroup(2))
     .channel(NioServerSocketChannel.class)
     .childHandler(new ChannelInitializer<NioSocketChannel>() {
@@ -422,7 +470,7 @@ new ServerBootstrap()
 
 
 
-#### ? handler 执行中如何换人？
+####  3.1.3  handler 执行中如何换人？
 
 关键代码 `io.netty.channel.AbstractChannelHandlerContext#invokeChannelRead()`
 
@@ -453,7 +501,7 @@ static void invokeChannelRead(final AbstractChannelHandlerContext next, Object m
 
 
 
-#### 演示 NioEventLoop 处理普通任务
+####  3.1.4 演示 NioEventLoop 处理普通任务
 
 NioEventLoop 除了可以处理 io 事件，同样可以向它提交普通任务
 
@@ -478,7 +526,7 @@ nioWorkers.execute(()->{
 
 
 
-#### 演示 NioEventLoop 处理定时任务
+####  3.1.5 演示 NioEventLoop 处理定时任务
 
 ```java
 NioEventLoopGroup nioWorkers = new NioEventLoopGroup(2);
@@ -521,44 +569,47 @@ channel 的主要作用
 
 #### ChannelFuture
 
-这时刚才的客户端代码
+把刚才的客户端代码拆开来看
 
 ```java
-new Bootstrap()
-    .group(new NioEventLoopGroup())
-    .channel(NioSocketChannel.class)
-    .handler(new ChannelInitializer<Channel>() {
-        @Override
-        protected void initChannel(Channel ch) {
-            ch.pipeline().addLast(new StringEncoder());
-        }
-    })
-    .connect("127.0.0.1", 8080)
-    .sync()
-    .channel()
-    .writeAndFlush(new Date() + ": hello world!");
+public class MyClient {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        ChannelFuture channelFuture = new Bootstrap()
+                .group(new NioEventLoopGroup())
+                .channel(NioSocketChannel.class)
+                .handler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline().addLast(new StringEncoder());
+                    }
+                })
+                // 该方法为异步非阻塞方法，主线程调用后不会被阻塞，真正去执行连接操作的是NIO线程
+            	// NIO线程：NioEventLoop 中的线程
+                .connect(new InetSocketAddress("localhost", 8080));// 1
+        
+        // 该方法用于等待连接真正建立
+        channelFuture.sync();
+        
+        // 获取客户端-服务器之间的Channel对象
+        Channel channel = channelFuture.channel();
+        channel.writeAndFlush("hello world");
+        System.in.read();
+    }
+}
 ```
-
-现在把它拆开来看
-
-```java
-ChannelFuture channelFuture = new Bootstrap()
-    .group(new NioEventLoopGroup())
-    .channel(NioSocketChannel.class)
-    .handler(new ChannelInitializer<Channel>() {
-        @Override
-        protected void initChannel(Channel ch) {
-            ch.pipeline().addLast(new StringEncoder());
-        }
-    })
-    .connect("127.0.0.1", 8080); // 1
-
-channelFuture.sync().channel().writeAndFlush(new Date() + ": hello world!");
-```
-
 * 1 处返回的是 ChannelFuture 对象，它的作用是利用 channel() 方法来获取 Channel 对象
 
 **注意** connect 方法是异步的，意味着不等连接建立，方法执行就返回了。因此 channelFuture 对象中不能【立刻】获得到正确的 Channel 对象
+
+sync() 方法的作用
+如果我们去掉channelFuture.sync()方法，会服务器无法收到hello world
+
+这是因为建立连接(connect)的过程是异步非阻塞的，若不通过sync()方法阻塞主线程，等待连接真正建立，这时通过 channelFuture.channel() 拿到的 Channel 对象，并不是真正与服务器建立好连接的 Channel，也就没法将信息正确的传输给服务器端
+
+所以需要通过channelFuture.sync()方法，阻塞主线程，同步处理结果，等待连接真正建立好以后，再去获得 Channel 传递数据。使用该方法，获取 Channel 和发送数据的线程都是主线程
+
+下面还有一种方法，用于异步获取建立连接后的 Channel 和发送数据，使得执行这些操作的线程是 NIO 线程（去执行connect操作的线程）
+
 
 实验如下：
 
@@ -711,7 +762,7 @@ public class CloseFutureClient {
 * 单线程没法异步提高效率，必须配合多线程、多核 cpu 才能发挥异步的优势
 * 异步并没有缩短响应时间，反而有所增加
 * 合理进行任务拆分，也是利用异步的关键
-
+* 提升的是吞吐量，单位时间内处理量
 
 
 ### 3.3 Future & Promise
@@ -1712,7 +1763,7 @@ class io.netty.buffer.CompositeByteBuf
 
 
 
-#### ? ByteBuf 优势
+##### ByteBuf 优势
 
 * 池化 - 可以重用池中 ByteBuf 实例，更节约内存，减少内存溢出的可能
 * 读写指针分离，不需要像 ByteBuffer 一样切换读写模式
